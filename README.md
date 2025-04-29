@@ -1,25 +1,25 @@
-# Sample OpenHands - TODO CLI Application
+# サンプル OpenHands - TODO CLI アプリケーション
 
-This is a simple command-line TODO application written in Python.
+これはPythonで書かれたシンプルなコマンドラインTODOアプリケーションです。
 
-## Features
+## 機能
 
-- Add a new TODO
-- List all TODOs
-- Edit a TODO
-- Delete a TODO
-- Mark a TODO as complete
+- TODOの追加
+- TODOの一覧表示
+- TODOの編集
+- TODOの削除
+- TODOの完了マーク機能
 
-## Usage
+## 使用方法
 
-Run the application using:
+以下のコマンドでアプリケーションを起動します:
 
     python3 todo_cli.py
 
-The application is interactive. Type `help` for a list of commands.
+このアプリケーションはインタラクティブな対話シェルとして動作します。コマンドの一覧は `help` を入力してください。
 
-## Note
+## 注意
 
-This application uses in-memory storage. All changes are lost when the application is closed.
+このアプリケーションはメモリ上のストレージを使用しています。アプリケーション終了時にすべての変更は失われます。
 
-Feel free to extend the application with additional functionality such as search, priority, deadlines, etc.
+必要に応じて、検索、優先度、期限などの機能を自由に拡張してください。
