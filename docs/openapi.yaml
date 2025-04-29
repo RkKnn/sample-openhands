@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Simple TODO App API
+  version: "0.1.0"
+  description: |
+    This is the OpenAPI specification for the Simple TODO App.
+    The API provides endpoints for managing TODO items.
+servers:
+  - url: http://localhost:53805
+paths:
+  /todos:
+    get:
+      summary: Retrieve all TODO items
+      responses:
+        '200':
+          description: A list of TODO items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    completed:
+                      type: boolean
+    post:
+      summary: Create a new TODO item
+      requestBody:
+        description: The TODO item to add.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+      responses:
+        '201':
+          description: Details of the created TODO item.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  completed:
+                    type: boolean
