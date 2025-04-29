@@ -45,7 +45,7 @@ def main():
                     status = "Done" if task["completed"] else "Pending"
                     print(f"{task['id']}. {task['title']} [{status}]")
                     if task["description"]:
-                        print(f"   {task['description']}")
+                        print(GREY + f"   {task['description']}" + RESET)
         elif command == "delete":
             try:
                 task_id = int(input("Enter task id to delete: ").strip())
