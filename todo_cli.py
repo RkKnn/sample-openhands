@@ -2,6 +2,23 @@
 GREEN = "\033[38;5;82m"
 RESET = "\033[0m"
 
+import json
+import os
+
+DATA_FILE = os.path.expanduser("~/.todo-sample")
+
+
+def load_tasks():
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as file:
+            return json.load(file)
+    return []
+
+
+def save_tasks(tasks):
+    with open(DATA_FILE, "w") as file:
+        json.dump(tasks, file, indent=4)
+
 
 def green_print(message):
     print(GREEN + message + RESET)
@@ -19,8 +36,8 @@ def print_help():
 
 
 def main():
-    tasks = []
-    next_id = 1
+    tasks = load_tasks()
+    next_id = max((task['id'] for task in tasks), default=0) + 1
 
     green_print("Welcome to the TODO CLI application.")
     print_help()
@@ -44,6 +61,7 @@ def main():
             })
             green_print(f"Task {next_id} added.")
             next_id += 1
+            save_tasks(tasks)
         elif command == "list":
             if not tasks:
                 green_print("No tasks available.")
@@ -66,6 +84,8 @@ def main():
                     task_found = True
                     green_print(f"Task {task_id} deleted.")
                     break
+# TODO: Add save_tasks(tasks) here to persist changes after deletion
+
             if not task_found:
                 green_print("Task not found.")
         elif command == "edit":
@@ -82,6 +102,8 @@ def main():
                     new_description = input("New description (leave empty to keep current): ").strip()
                     if new_description:
                         task["description"] = new_description
+# TODO: Add save_tasks(tasks) here to persist changes after editing
+
                     green_print("Task updated.")
                     break
             else:
@@ -93,6 +115,8 @@ def main():
                 green_print("Invalid id.")
                 continue
             for task in tasks:
+# TODO: Add save_tasks(tasks) here to persist changes after marking as complete
+
                 if task["id"] == task_id:
                     task["completed"] = True
                     green_print("Task marked as complete.")
